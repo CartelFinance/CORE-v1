@@ -10,3 +10,5 @@ yarn-error.log
 contracts.orig
 Proxy/node_modules
 .openzeppelin/.session
+
+**/secrets.json
