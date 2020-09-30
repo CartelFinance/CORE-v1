@@ -7,10 +7,9 @@ const UniswapV2Factory = artifacts.require('UniswapV2Factory');
 const FeeApprover = artifacts.require('FeeApprover');
 const UniswapV2Router02 = artifacts.require('UniswapV2Router02');
 
-contract('Liquidity Generation tests', ([alice, john, minter, dev, burner, clean, clean2, clean3, clean4, clean5]) => {
+contract('Liquidity Generation tests', ([alice, john, dev, clean, clean2, clean3, clean4, clean5]) => {
 
     beforeEach(async () => {
-
         this.factory = await UniswapV2Factory.new(alice, { from: alice });
         this.weth = await WETH9.new({ from: john });
         this.router = await UniswapV2Router02.new(this.factory.address, this.weth.address, { from: alice });
@@ -25,7 +24,6 @@ contract('Liquidity Generation tests', ([alice, john, minter, dev, burner, clean
         await this.corevault.initialize(this.core.address, dev, clean5);
         await this.feeapprover.setCoreVaultAddress(this.corevault.address, { from: alice });
     });
-
 
     it("Should have a correct balance starting", async () => {
         assert.equal((await web3.eth.getBalance(this.core.address)).valueOf().toString(), "0");
@@ -154,14 +152,7 @@ contract('Liquidity Generation tests', ([alice, john, minter, dev, burner, clean
     });
 
     it("Super admin works as expected", async () => {
-
-
         await expectRevert(this.corevault.setStrategyContractOrDistributionContractAllowance(this.core.address, '1', this.core.address, { from: alice }), "Super admin : caller is not super admin.")
         await expectRevert(this.corevault.setStrategyContractOrDistributionContractAllowance(this.core.address, '1', this.core.address, { from: clean5 }), "Governance setup grace period not over")
-    })
-
-
-
-
-
+    });
 });

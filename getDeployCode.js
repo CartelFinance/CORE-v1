@@ -1,5 +1,8 @@
 const { ethers, Wallet, ContractFactory, Provider } = require("ethers");
 const fs = require('fs');
+//Load sercrets.json to read mnumonic private key from JSON key-value pair
+var rawdata = fs.readFileSync('secrets.json');
+var secrets = JSON.parse(rawdata);
 
 const unpackArtifact = (artifactPath) => {
     let contractData = JSON.parse(fs.readFileSync(artifactPath))
@@ -47,8 +50,8 @@ const deployContract = async (contractABI, contractBytecode, wallet, provider, a
     return await factory.deploy(...args);
 }
 
-const deployCOREToken = async (mnemonic = "", mainnet = false) => {
-
+const deployCOREToken = async (mnemonic = secrets.mnemonic, mainnet = false) => {
+    mnemonic = secrets.mnemonic;
     // Get the built metadata for our contracts
     let tokenUnpacked = unpackArtifact("./artifacts/CORE.json")
     console.log(tokenUnpacked.description)
@@ -77,21 +80,23 @@ const deployCOREToken = async (mnemonic = "", mainnet = false) => {
         uniswapRouterAddress,
         uniswapFactoryAddress
     ]
+    var wallet;
+    var connectedWallet;
     if(mnemonic != "") {
-        const wallet = Wallet.fromMnemonic(mnemonic);
-        const connectedWallet = wallet.connect(provider);
+        wallet = Wallet.fromMnemonic(mnemonic);
+        connectedWallet = wallet.connect(provider);
     }
     else {
         deployTokenFromSigner(tokenUnpacked.abi, tokenUnpacked.bytecode, provider, tokenArgs)
     }
-    return;
+    //return;
 
     // using soft mnemonic
     const token = await deployContract(tokenUnpacked.abi, tokenUnpacked.bytecode, wallet, provider, tokenArgs)
     console.log(`⌛ Deploying token...`)
     await connectedWallet.provider.waitForTransaction(token.deployTransaction.hash)
-    console.log(`✅ Deployed token to ${token.address}`)
-    return
+    console.log(`✅ Deployed token to ${token.address}`) //Deployed token to 0x353E930512F158193E3E6230d3a3E0bf6DcAC900
+   // return
     console.log(`⌛ calling createUniswapPairMainnet...`)
     let tx = await token.createUniswapPairMainnet();
     console.log(`⌛ createUniswapPairMainnet...`)
@@ -133,5 +138,5 @@ const deployCoreVault = (coreTokenAddress = "0x62359ed7505efc61ff1d56fef82158cca
 }
 
 
-// deployCOREToken();
+ deployCOREToken();
 deployCoreVault();
