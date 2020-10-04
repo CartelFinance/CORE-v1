@@ -1,7 +1,5 @@
-// SPDX-License-Identifier: MIT
-
-pragma solidity ^0.6.0;
-
+//SPDX-License-Identifier: MIT
+pragma solidity ^0.6.8;
 
 interface IFeeApprover {
 
@@ -25,6 +23,5 @@ interface IFeeApprover {
     ) external  returns (uint256 transferToAmount, uint256 transferToFeeBearerAmount);
 
     function setPaused() external;
- 
 
 }

@@ -1,4 +1,6 @@
-pragma solidity 0.6.12;
+//SPDX-License-Identifier: MIT
+pragma solidity ^0.6.8;
+
 
 import "@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/IERC20.sol";
 

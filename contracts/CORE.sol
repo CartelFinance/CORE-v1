@@ -1,24 +1,21 @@
-pragma solidity 0.6.12;
-
+//SPDX-License-Identifier: MIT
+pragma solidity ^0.6.8;
 
 import "./NBUNIERC20.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
-
-
 // CoreToken with Governance.
 contract CORE is NBUNIERC20 {
 
-
-        /**
-     * @dev Sets the values for {name} and {symbol}, initializes {decimals} with
-     * a default value of 18.
-     *
-     * To select a different value for {decimals}, use {_setupDecimals}.
-     *
-     * All three of these values are immutable: they can only be set once during
-     * construction.
-     */
+    /**
+    * @dev Sets the values for {name} and {symbol}, initializes {decimals} with
+    * a default value of 18.
+    *
+    * To select a different value for {decimals}, use {_setupDecimals}.
+    *
+    * All three of these values are immutable: they can only be set once during
+    * construction.
+    */
     constructor(address router, address factory) public {
 
         initialSetup(router, factory);

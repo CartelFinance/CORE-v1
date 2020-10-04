@@ -12,9 +12,10 @@
 
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
-import "@nomiclabs/buidler/console.sol";
+//SPDX-License-Identifier: MIT
+pragma solidity ^0.6.8;
 
-pragma solidity 0.6.12;
+import "@nomiclabs/buidler/console.sol";
 
 contract WETH9 {
     string public name     = "Wrapped Ether";

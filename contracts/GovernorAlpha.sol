@@ -8,9 +8,9 @@
 //
 // Ctrl+f for XXX to see all the modifications.
 // uint96s are changed to uint256s for simplicity and safety.
+//SPDX-License-Identifier: MIT
+pragma solidity ^0.6.8;
 
-// XXX: pragma solidity ^0.5.16;
-pragma solidity 0.6.12;
 pragma experimental ABIEncoderV2;
 
 import "./CORE.sol";
