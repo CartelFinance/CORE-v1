@@ -65,7 +65,7 @@ module.exports = {
          enabled: true,
          runs: 200
        },
-       evmVersion: "byzantium"
+       evmVersion: "istanbul"  //byzantium, constantinople
       }
     }
   }

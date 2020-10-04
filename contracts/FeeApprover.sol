@@ -53,7 +53,7 @@ contract FeeApprover is OwnableUpgradeSafe {
 
     function calculateAmountsAfterFee(        
         address sender, 
-        address recipient, // unusued maybe use din future
+        address recipient, // unusued maybe use in future
         uint256 amount
         ) public  returns (uint256 transferToAmount, uint256 transferToFeeDistributorAmount) 
         {
