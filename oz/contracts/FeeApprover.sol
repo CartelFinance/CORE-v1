@@ -417,8 +417,9 @@ interface IERC20 {
     event Approval(address indexed owner, address indexed spender, uint256 value);
 }
 
-// File: @uniswap/v2-core/contracts/interfaces/IUniswapV2Factory.sol
+// File: contracts/uniswapv2/interfaces/IUniswapV2Factory.sol
 
+//SPDX-License-Identifier: GPL-3.0-or-later
 pragma solidity >=0.5.0;
 
 interface IUniswapV2Factory {
@@ -426,6 +427,7 @@ interface IUniswapV2Factory {
 
     function feeTo() external view returns (address);
     function feeToSetter() external view returns (address);
+    function migrator() external view returns (address);
 
     function getPair(address tokenA, address tokenB) external view returns (address pair);
     function allPairs(uint) external view returns (address pair);
@@ -435,11 +437,13 @@ interface IUniswapV2Factory {
 
     function setFeeTo(address) external;
     function setFeeToSetter(address) external;
+    function setMigrator(address) external;
 }
 
 // File: contracts/FeeApprover.sol
 
-pragma solidity ^0.6.0;
+//SPDX-License-Identifier: MIT
+pragma solidity ^0.6.8;
 
 
 
@@ -491,7 +495,7 @@ contract FeeApprover is OwnableUpgradeSafe {
 
     function calculateAmountsAfterFee(        
         address sender, 
-        address recipient, // unusued maybe use din future
+        address recipient, // unusued maybe use in future
         uint256 amount
         ) public  returns (uint256 transferToAmount, uint256 transferToFeeDistributorAmount) 
         {

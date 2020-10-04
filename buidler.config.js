@@ -3,7 +3,7 @@ usePlugin('buidler-log-remover');
 
 module.exports = {
   solc: {
-    version: "0.6.12",
+    version: "0.6.8",
   },
   networks: {
     buidlerevm: {
@@ -13,7 +13,7 @@ module.exports = {
           enabled: true,
           runs: 200
         },
-        evmVersion: "byzantium"
+        evmVersion: "istanbul" //byzantium, constantinople
        }
     },
   }

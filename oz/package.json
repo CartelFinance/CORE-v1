@@ -10,5 +10,8 @@
   "license": "ISC",
   "dependencies": {
     "@openzeppelin/cli": "^2.8.2"
+  },
+  "devDependencies": {
+    "@nomiclabs/buidler": "^1.4.7"
   }
 }
