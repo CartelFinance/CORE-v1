@@ -59,3 +59,10 @@ circulating supply can only ever go down, period.
 
 To run the tests run
 ``` npx buidler test ```
+
+
+## My Notes
+FeeGenerator.sol, GovernorAlpha.sol, WETH9.sol are not in flattened contracts. Are they used?
+
+Looks like Encore deployed GovernorAlpha.sol and WETH9.sol, but CORE did not.
+

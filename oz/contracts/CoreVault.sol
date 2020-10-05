@@ -1,4 +1,4 @@
-
+//SPDX-License-Identifier: MIT
 // File: @openzeppelin/contracts-ethereum-package/contracts/token/ERC20/IERC20.sol
 
 pragma solidity ^0.6.0;
@@ -801,7 +801,6 @@ contract OwnableUpgradeSafe is Initializable, ContextUpgradeSafe {
 
 // File: contracts/INBUNIERC20.sol
 
-//SPDX-License-Identifier: MIT
 pragma solidity ^0.6.8;
 
 /**
@@ -884,7 +883,6 @@ interface INBUNIERC20 {
 
 // File: contracts/CoreVault.sol
 
-//SPDX-License-Identifier: MIT
 pragma solidity ^0.6.8;
 
 

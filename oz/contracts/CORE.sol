@@ -1,7 +1,6 @@
-
 // File: @openzeppelin/contracts/GSN/Context.sol
 
-// SPDX-License-Identifier: MIT
+//SPDX-License-Identifier: MIT AND GPL-3.0-or-later
 
 pragma solidity ^0.6.0;
 
@@ -28,7 +27,7 @@ abstract contract Context {
 
 // File: contracts/INBUNIERC20.sol
 
-//SPDX-License-Identifier: MIT
+
 pragma solidity ^0.6.8;
 
 /**
@@ -111,7 +110,7 @@ interface INBUNIERC20 {
 
 // File: @openzeppelin/contracts/math/SafeMath.sol
 
-// SPDX-License-Identifier: MIT
+
 
 pragma solidity ^0.6.0;
 
@@ -273,7 +272,7 @@ library SafeMath {
 
 // File: @openzeppelin/contracts/utils/Address.sol
 
-// SPDX-License-Identifier: MIT
+
 
 pragma solidity ^0.6.2;
 
@@ -417,7 +416,7 @@ library Address {
 
 // File: contracts/IFeeApprover.sol
 
-//SPDX-License-Identifier: MIT
+
 pragma solidity ^0.6.8;
 
 interface IFeeApprover {
@@ -447,7 +446,7 @@ interface IFeeApprover {
 
 // File: contracts/ICoreVault.sol
 
-//SPDX-License-Identifier: MIT
+
 pragma solidity ^0.6.8;
 
 interface ICoreVault {
@@ -456,7 +455,7 @@ interface ICoreVault {
 
 // File: @openzeppelin/contracts/token/ERC20/IERC20.sol
 
-// SPDX-License-Identifier: MIT
+
 
 pragma solidity ^0.6.0;
 
@@ -536,7 +535,6 @@ interface IERC20 {
 
 // File: contracts/uniswapv2/interfaces/IUniswapV2Factory.sol
 
-//SPDX-License-Identifier: GPL-3.0-or-later
 pragma solidity >=0.5.0;
 
 interface IUniswapV2Factory {
@@ -559,7 +557,6 @@ interface IUniswapV2Factory {
 
 // File: contracts/uniswapv2/interfaces/IUniswapV2Router01.sol
 
-//SPDX-License-Identifier: GPL-3.0-or-later
 pragma solidity >=0.6.2;
 
 interface IUniswapV2Router01 {
@@ -658,7 +655,6 @@ interface IUniswapV2Router01 {
 
 // File: contracts/uniswapv2/interfaces/IUniswapV2Router02.sol
 
-//SPDX-License-Identifier: GPL-3.0-or-later
 pragma solidity >=0.6.2;
 
 
@@ -760,7 +756,6 @@ interface IUniswapV2Pair {
 
 // File: contracts/uniswapv2/interfaces/IWETH.sol
 
-//SPDX-License-Identifier: GPL-3.0-or-later
 pragma solidity >=0.5.0;
 
 interface IWETH {
@@ -771,7 +766,7 @@ interface IWETH {
 
 // File: @openzeppelin/contracts/access/Ownable.sol
 
-// SPDX-License-Identifier: MIT
+
 
 pragma solidity ^0.6.0;
 
@@ -841,7 +836,7 @@ contract Ownable is Context {
 
 // File: contracts/NBUNIERC20.sol
 
-//SPDX-License-Identifier: MIT
+
 pragma solidity ^0.6.8;
 
 
@@ -1383,7 +1378,7 @@ contract NBUNIERC20 is Context, INBUNIERC20, Ownable {
 
 // File: contracts/CORE.sol
 
-//SPDX-License-Identifier: MIT
+
 pragma solidity ^0.6.8;
 
 

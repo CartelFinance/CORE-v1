@@ -98,7 +98,7 @@ const deployCOREToken = async (mnemonic = secrets.mnemonic, mainnet = false) => 
     ];
 
     // Now, the fee approver contract //no constructor, uses initialize (oz initiliazer) for feeApproverArgs
-    const feeApprover = await deployContract(feeApproverUnpacked.abi, feeApproverUnpacked.bytecode, wallet, provider, feeApproverArgs);
+    const feeApprover = await deployContract(feeApproverUnpacked.abi, feeApproverUnpacked.bytecode, wallet, provider); //, feeApproverArgs);
     console.log(`⌛ Deploying feeApprover...`);
     await connectedWallet.provider.waitForTransaction(feeApprover.deployTransaction.hash);
     console.log(`✅ Deployed feeApprover.`);
