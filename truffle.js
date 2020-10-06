@@ -2,7 +2,7 @@ var HDWalletProvider = require("truffle-hdwallet-provider");
 const LedgerWalletProvider = require('truffle-ledger-provider');
 var fs = require('fs');
 //Load sercrets.json to read mnumonic private key from JSON key-value pair
-var rawdata = fs.readFileSync('secrets.json');
+var rawdata = fs.readFileSync('/home/phil/workspace/CORE-v1/secrets.json');
 var secrets = JSON.parse(rawdata);
 
 const kovanLedgerOptions = {
