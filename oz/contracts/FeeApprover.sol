@@ -1,5 +1,5 @@
+
 // File: @openzeppelin/contracts-ethereum-package/contracts/Initializable.sol
-//SPDX-License-Identifier: GPL-3.0-or-later and MIT
 
 pragma solidity >=0.4.24 <0.7.0;
 
@@ -419,6 +419,7 @@ interface IERC20 {
 
 // File: contracts/uniswapv2/interfaces/IUniswapV2Factory.sol
 
+//SPDX-License-Identifier: GPL-3.0-or-later
 pragma solidity >=0.5.0;
 
 interface IUniswapV2Factory {
@@ -441,6 +442,7 @@ interface IUniswapV2Factory {
 
 // File: contracts/FeeApprover.sol
 
+//SPDX-License-Identifier: MIT
 pragma solidity ^0.6.8;
 
 

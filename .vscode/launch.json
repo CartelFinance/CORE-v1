@@ -18,11 +18,11 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "Launch Program",
+            "name": "Launch deploy.js",
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "program": "${workspaceFolder}/getDeployCode.js"
+            "program": "${workspaceFolder}/deploy.js"
         }
     ]
 }

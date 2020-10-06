@@ -6,8 +6,8 @@ var secrets = JSON.parse(rawdata);
 
 const unpackArtifact = (artifactPath) => {
     let contractData = JSON.parse(fs.readFileSync(artifactPath));
-    const contractBytecode = contractData['bytecode'];
-    const contractABI = contractData['abi'];
+    const contractBytecode = contractData.bytecode;
+    const contractABI = contractData.abi;
     const constructorArgs = contractABI.filter((itm) => {
         return itm.type == 'constructor';
     });
@@ -44,9 +44,9 @@ const deployContract = async (contractABI, contractBytecode, wallet, provider, a
 
 const deployCOREToken = async (mnemonic = secrets.mnemonic, mainnet = false) => {
     // Get the build metadata for our contracts
-    let tokenUnpacked = unpackArtifact("./artifacts/CORE.json");
+    let tokenUnpacked = unpackArtifact("./oz/build/contracts/CORE.json"); //unpackArtifact("./artifacts/CORE.json");
     console.log(tokenUnpacked.description);
-    let feeApproverUnpacked = unpackArtifact("./artifacts/FeeApprover.json");
+    let feeApproverUnpacked = unpackArtifact("./oz/build/contracts/FeeApprover.json"); //unpackArtifact("./artifacts/FeeApprover.json");
 
     let provider;
     let wethAddress;
@@ -68,7 +68,7 @@ const deployCOREToken = async (mnemonic = secrets.mnemonic, mainnet = false) => 
     const tokenArgs = [
         uniswapRouterAddress,
         uniswapFactoryAddress
-    ]
+    ];
     var wallet;
     var connectedWallet;
     if(mnemonic != "") {
@@ -82,7 +82,7 @@ const deployCOREToken = async (mnemonic = secrets.mnemonic, mainnet = false) => 
     const token = await deployContract(tokenUnpacked.abi, tokenUnpacked.bytecode, wallet, provider, tokenArgs);
     console.log(`⌛ Deploying token...`);
     await connectedWallet.provider.waitForTransaction(token.deployTransaction.hash);
-    console.log(`✅ Deployed token to ${token.address}`); //Deployed token to 0xD7FD748ba4762db93F3766c3be7f798313822a71, 0xdc5Abf2AAD85427E71C291bded7423931d342162
+    console.log(`✅ Deployed token to ${token.address}`); //Deployed token to 0x43fDEEE9babB5602cE274dc3290fAAC957E6f4aB 0xD7FD748ba4762db93F3766c3be7f798313822a71, 0xdc5Abf2AAD85427E71C291bded7423931d342162
     
     //Uniswap paid already created in token constructor?
     //console.log(`⌛ calling createUniswapPairMainnet...`);
@@ -106,8 +106,8 @@ const deployCOREToken = async (mnemonic = secrets.mnemonic, mainnet = false) => 
     let setTransferCheckerResult = await token.setShouldTransferChecker(feeApprover.address);
     console.log(`⌛ setShouldTransferChecker...`);
     await connectedWallet.provider.waitForTransaction(setTransferCheckerResult.hash);
-    console.log(`✅ Called setShouldTransferChecker(${feeApprover.address} on token at ${token.address}`);
-    let setFeeBearerResult = await token.setFeeBearer(wallet.address);
+    console.log(`✅ Called setShouldTransferChecker(${feeApprover.address} on token at ${token.address}`); //0x75fDA455995f0270B9Bc195Ef8855DBaCAb49a93 on token at 0x43fDEEE9babB5602cE274dc3290fAAC957E6f4aB
+    let setFeeBearerResult = await token.setFeeBearer(wallet.address); //TypeError: token.setFeeBearer is not a function
     console.log(`⌛ setFeeBearer...`);
     await connectedWallet.provider.waitForTransaction(setFeeBearerResult.hash);
     console.log(`✅ Called setFeeBearer(${wallet.address} on token at ${token.address})`);
@@ -127,25 +127,21 @@ deployCOREToken();
 
 
 
-//My spam
-/* const abi = unpackArtifact("./artifacts/CORE.json").abi;
-const address = "0xD7FD748ba4762db93F3766c3be7f798313822a71";
-const provider = ethers.getDefaultProvider("kovan");
+function mySpam(){
+    const abi = unpackArtifact("./oz/build/contracts/CORE.json").abi;
+    const address = "0x43fDEEE9babB5602cE274dc3290fAAC957E6f4aB";
+    const provider = ethers.getDefaultProvider("kovan");
+    
+    wallet = Wallet.fromMnemonic(secrets.mnemonic);
+    connectedWallet = wallet.connect(provider);
+    
+    const token = new ethers.Contract(address, abi, connectedWallet);
+    token.name().then(console.log);
+    
+    token.addLiquidity(1).then(console.log);
+}
 
-wallet = Wallet.fromMnemonic(secrets.mnemonic);
-connectedWallet = wallet.connect(provider);
 
-const token = new ethers.Contract(address, abi, connectedWallet);
-token.name().then(console.log);
-
-
-const feeApproverArgs = [
-    token.address,
-    wethAddress,
-    uniswapFactoryAddress
-];
-
-const feeApprover = deployContract(feeApproverUnpacked.abi, feeApproverUnpacked.bytecode, wallet, provider, feeApproverArgs); */
 /* 
 const getContractDeployTx = (contractABI, contractBytecode, wallet, provider, args = []) => {
     const factory = new ContractFactory(contractABI, contractBytecode, wallet.connect(provider))

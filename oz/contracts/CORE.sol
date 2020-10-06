@@ -1,6 +1,7 @@
+//SPDX-License-Identifier: GPL-3.0-or-later
 // File: @openzeppelin/contracts/GSN/Context.sol
 
-//SPDX-License-Identifier: MIT AND GPL-3.0-or-later
+
 
 pragma solidity ^0.6.0;
 
