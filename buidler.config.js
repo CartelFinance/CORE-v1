@@ -10,7 +10,7 @@ module.exports = {
   solc: {
     version: "0.6.8",
   },
-  defaultNetwork: "kovan",
+  defaultNetwork: "buidlerevm",
   networks: {
     buidlerevm: {
       allowUnlimitedContractSize: true,
