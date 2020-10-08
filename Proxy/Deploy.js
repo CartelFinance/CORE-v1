@@ -2,50 +2,50 @@ const { ethers, Wallet, ContractFactory, Provider } = require("ethers");
 const fs = require('fs');
 
 const unpackArtifact = (artifactPath) => {
-    let contractData = JSON.parse(fs.readFileSync(artifactPath))
-    const contractBytecode = contractData['bytecode']
-    const contractABI = contractData['abi']
+    let contractData = JSON.parse(fs.readFileSync(artifactPath));
+    const contractBytecode = contractData.bytecode;
+    const contractABI = contractData.abi;
     const constructorArgs = contractABI.filter((itm) => {
-        return itm.type == 'constructor'
-    })
+        return itm.type == 'constructor';
+    });
     let constructorStr;
     if(constructorArgs.length < 1) {
-        constructorStr = "    -- No constructor arguments -- "
+        constructorStr = "    -- No constructor arguments -- ";
     }
     else {
-        constructorJSON = constructorArgs[0].inputs
+        constructorJSON = constructorArgs[0].inputs;
         constructorStr = JSON.stringify(constructorJSON.map((c) => {
             return {
                 name: c.name,
                 type: c.type
-            }
-        }))
+            };
+        }));
     }
     return {
         abi: contractABI,
         bytecode: contractBytecode,
         description:`  ${contractData.contractName}\n    ${constructorStr}`
-    }
-}
+    };
+};
 
 const logDeployTx = (contractABI, contractBytecode, args = []) => {
-    const factory = new ContractFactory(contractABI, contractBytecode)
+    const factory = new ContractFactory(contractABI, contractBytecode);
     let deployTx;
     if(args.length === 0) {
-        deployTx = factory.getDeployTransaction()
+        deployTx = factory.getDeployTransaction();
     }
     else {
-        deployTx = factory.getDeployTransaction(...args)
+        deployTx = factory.getDeployTransaction(...args);
     }
-    console.log(deployTx)
-}
+    console.log(deployTx);
+};
 
 const getContractDeploymentTxFor = async (artifactPath, args) => {
     // Get the built metadata for our contracts
-    let contractUnpacked = unpackArtifact(artifactPath)
-    console.log(contractUnpacked.description)
-    logDeployTx(contractUnpacked.abi, contractUnpacked.bytecode, args)
-}
+    let contractUnpacked = unpackArtifact(artifactPath);
+    console.log(contractUnpacked.description);
+    logDeployTx(contractUnpacked.abi, contractUnpacked.bytecode, args);
+};
 
 
 
